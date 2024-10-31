@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vpn_app/Controller/services/Helper/Pref.dart';
 import 'package:vpn_app/Controller/services/HomeProvder.dart';
 import 'package:vpn_app/Controller/services/LocationProvider.dart';
 import 'package:vpn_app/Views/Constant.dart';
@@ -9,15 +10,16 @@ import 'package:vpn_app/Views/HomeScreen.dart';
 import 'package:vpn_app/Views/OnBoardingScreen.dart';
 import 'package:vpn_app/Views/SplashScreen.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Pref.InitializeHive();
    SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+    // DeviceOrientation.portraitDown,
   ]).then((_){
     runApp(const MyApp());
   });
-  
+ 
 }
 
 class MyApp extends StatefulWidget {

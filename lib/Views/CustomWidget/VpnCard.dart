@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vpn_app/Controller/services/Helper/Pref.dart';
 import 'package:vpn_app/Controller/services/HomeProvder.dart';
+import 'package:vpn_app/Controller/services/vpn_engine.dart';
 import 'package:vpn_app/Models/vpn.dart';
 import 'package:vpn_app/Views/Constant.dart';
 
@@ -16,8 +18,15 @@ class VpnCard extends StatelessWidget {
     final homeProvider = Provider.of<HomeProvider>(context);
     return  InkWell(
       onTap: () {
-        homeProvider.vpn=vpn;
+        homeProvider.vpn= vpn;
+        Pref.vpn = vpn;
         Navigator.pop(context);
+        if(homeProvider.vpnState == VpnEngine.vpnConnected){
+          VpnEngine.stopVpn();
+          Future.delayed(const Duration(seconds: 2), () => homeProvider.connectToVPN(context));
+        } else{
+          homeProvider.connectToVPN(context);
+        }
       },
       child: Container(
         height: 60,

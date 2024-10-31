@@ -5,6 +5,7 @@ import 'dart:developer';
 
 import 'package:csv/csv.dart';
 import 'package:http/http.dart';
+import 'package:vpn_app/Controller/services/Helper/Pref.dart';
 import 'package:vpn_app/Models/vpn.dart';
 
 class Api{
@@ -34,7 +35,11 @@ class Api{
    
       // log(tempJson.toString());
       // log(jsonEncode(tempJson));
+    vpnList.shuffle();
 
+    if(vpnList.isNotEmpty){
+      Pref.vpnList = vpnList;
+    }
       
      return vpnList;
   }
@@ -63,6 +68,7 @@ class Api{
 
         // Convert country name to CountryData  with flag
         contries = uniqueContries.toList();
+        await Pref.storeCountries(contries);
         print(contries);
 
       }else{
@@ -102,6 +108,7 @@ class Api{
 
         // Convert country name to CountryData  with flag
         flags = uniqueContries.toList();
+        await Pref.storeCountryFlags(flags);
         print(flags);
 
       }else{

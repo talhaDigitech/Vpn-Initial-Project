@@ -5,9 +5,9 @@ import 'package:vpn_app/Views/Constant.dart';
 class HomeCard extends StatelessWidget {
   final String? title;
   final String subtitle;
-  final IconData icon;
+  final icon;
   final image;
-  const HomeCard({super.key,  this.title, required this.subtitle, required this.icon, this.image = null});
+  const HomeCard({super.key,  this.title, required this.subtitle,  this.icon = null, this.image = null});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class HomeCard extends StatelessWidget {
                  ]),
              
             ),
-            child: Icon(icon,size: 26, color: Colors.white,),
+            child: icon,
             ),
           ),
           // title

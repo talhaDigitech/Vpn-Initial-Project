@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:vpn_app/Controller/services/Api/api.dart';
+import 'package:vpn_app/Controller/services/Helper/Pref.dart';
 import 'package:vpn_app/Models/vpn.dart';
  class LocationProvider with ChangeNotifier {
-    List<AutoGenerate> _vpnList = [];
+    List<AutoGenerate> _vpnList = Pref.vpnList;
      bool _isLoading = false;
 
     List<AutoGenerate> get vpnList => _vpnList;
     bool  get isLoading => _isLoading;
 
-    List<String> _countrylist = [];
-    List<String> _flaglist = [];
+    List<String> _countrylist = Pref.getStoredCountries();
+    List<String> _flaglist = Pref.getStoredCountryFlags();
 
     List<String> get countrylist => _countrylist; 
     List<String> get flaglist => _flaglist; 

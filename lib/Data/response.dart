@@ -1,3 +1,0 @@
-class VpnData {
-  String res = "" ;
-}
