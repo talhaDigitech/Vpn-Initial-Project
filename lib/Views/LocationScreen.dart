@@ -33,23 +33,27 @@ class _LocationScreenState extends State<LocationScreen> {
     // final locationController = Provider.of<LocationProvider>(context, listen: false);
 
     
+  // Load cached data instantly
+    setState(() {
+      servers = locationController.vpnList;
+      countries = locationController.countrylist;
+      flags = locationController.flaglist;
+    });
 
-      if(locationController.vpnList.isNotEmpty || locationController.countrylist.isNotEmpty || locationController.flaglist.isNotEmpty){
-    await locationController.getContriesData();
-    await locationController.getVpnServer();
+    // Fetch updated data in the background if lists are empty
+    if (servers.isEmpty || countries.isEmpty || flags.isEmpty) {
+      await Future.wait([
+        locationController.getContriesData(),
+        locationController.getVpnServer(),
+      ]);
 
-    if (mounted) {
-      setState(() {
-        servers = locationController.vpnList;
-        countries = locationController.countrylist;
-        print(countries);
-        flags =locationController.flaglist;
-        print(servers.length);
-      });
-    } else{
-      print("-----------------list is Empty--------------------");
-
-    }
+      if (mounted) {
+        setState(() {
+          servers = locationController.vpnList;
+          countries = locationController.countrylist;
+          flags = locationController.flaglist;
+        });
+      }
     }
   }
 

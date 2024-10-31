@@ -31,6 +31,9 @@ import 'package:vpn_app/Models/vpn.dart';
       _flaglist.clear();
       _countrylist = await Api.getContries();
       _flaglist = await Api.getCountriesFlags();
+       // Store countries and flags in Hive
+    await Pref.storeCountries(_countrylist);
+    await Pref.storeCountryFlags(_flaglist);
       _isLoading = false;
       notifyListeners();
     }

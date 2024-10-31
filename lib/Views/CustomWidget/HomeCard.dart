@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vpn_app/Controller/services/HomeProvder.dart';
 import 'package:vpn_app/Views/Constant.dart';
 
 class HomeCard extends StatelessWidget {
@@ -11,6 +13,7 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<HomeProvider>(context);
     return SizedBox(
       width: 150,
       child: Column(
@@ -38,10 +41,12 @@ class HomeCard extends StatelessWidget {
               gradient: LinearGradient(
                   begin: FractionalOffset.topRight,
                   end: FractionalOffset.bottomLeft,
-                  colors: [
-                    lightBlue,
-                    lightGradientBlue,
-                 ]),
+                  colors: homeProvider.getButtonColor,
+                //   [
+                //     lightBlue,
+                //     lightGradientBlue,
+                //  ]
+                 ),
              
             ),
             child: icon,
