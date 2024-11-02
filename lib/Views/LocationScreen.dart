@@ -143,11 +143,9 @@ class _LocationScreenState extends State<LocationScreen> {
     return ListView.builder(
       
       itemBuilder: (context, index) {
+        // final country = countries[index];
+        // final flag = flags[index];
         return
-            // Text(
-            //   locationProvider.countrylist[index],
-            //   style: TextStyle(color: Colors.white),
-            // );
             LocationCart(
           countryName: locationController.countrylist[index],
           flag: locationController.flaglist[index],
@@ -175,7 +173,7 @@ class _LocationScreenState extends State<LocationScreen> {
           },
         );
       },
-      itemCount: countries.length,
+      itemCount: 2,
       shrinkWrap: true,
     );
   }

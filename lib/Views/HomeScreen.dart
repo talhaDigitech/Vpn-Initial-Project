@@ -7,6 +7,7 @@ import 'package:vpn_app/Models/vpn_status.dart';
 import 'package:vpn_app/Views/Constant.dart';
 import 'package:vpn_app/Views/CustomWidget/CountDownTimer.dart';
 import 'package:vpn_app/Views/CustomWidget/HomeCard.dart';
+import 'package:vpn_app/Views/IPDetailScreen.dart';
 import 'package:vpn_app/Views/LocationScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,13 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
           style: logoStyle,
         ),
         elevation: 0,
-        leading: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.menu,
-              color: Colors.white,
-              size: 26,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(
+        //       Icons.menu,
+        //       color: Colors.white,
+        //       size: 26,
+        //     )),
         actions: [
           IconButton(
               onPressed: () {
@@ -217,20 +218,25 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 // country flag
                 Expanded(
-                  child: HomeCard(
-                    title: homeProvider.vpn.CountryLong == null
-                        ? "Country"
-                        : homeProvider.vpn.CountryLong,
-                    subtitle: "Free",
-                    icon: (homeProvider.vpn.CountryLong == null)
-                        ? Icon(
-                            Icons.vpn_lock_rounded,
-                            color: Colors.white,
-                          )
-                        : null,
-                    image: (homeProvider.vpn.CountryLong == null)
-                        ? null
-                        : "assets/flags/${homeProvider.vpn.CountryShort!.toLowerCase()}.png",
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>IpdetailScreen()));
+                    },
+                    child: HomeCard(
+                      title: homeProvider.vpn.CountryLong == null
+                          ? "Country"
+                          : homeProvider.vpn.CountryLong,
+                      subtitle: "Free",
+                      icon: (homeProvider.vpn.CountryLong == null)
+                          ? Icon(
+                              Icons.vpn_lock_rounded,
+                              color: Colors.white,
+                            )
+                          : null,
+                      image: (homeProvider.vpn.CountryLong == null )
+                          ? null
+                          : "assets/flags/${homeProvider.vpn.CountryShort!.toLowerCase()}.png",
+                    ),
                   ),
                 ),
                 Expanded(
@@ -257,9 +263,9 @@ class _HomeScreenState extends State<HomeScreen> {
               stream: VpnEngine.vpnStatusSnapshot(),
               builder: (context, snapshot) {
                 final byteIn =
-                    int.tryParse(snapshot.data?.byteIn.toString() ?? '0') ?? 0;
+                    snapshot.data?.byteIn  ?? 0;
                 final byteOut =
-                    int.tryParse(snapshot.data?.byteOut.toString() ?? '0') ?? 0;
+                    snapshot.data?.byteOut  ?? 0;
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

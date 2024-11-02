@@ -2,10 +2,10 @@
 // import 'dart:math';
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:csv/csv.dart';
 import 'package:http/http.dart';
 import 'package:vpn_app/Controller/services/Helper/Pref.dart';
+import 'package:vpn_app/Models/NetworkDetailModel.dart';
 import 'package:vpn_app/Models/vpn.dart';
 
 class Api{
@@ -122,8 +122,22 @@ class Api{
 
   }
 
+  static Future<NetworkDetail> getIPDetails({required NetworkDetail ipData})async {
+    var ipdata;
+    try{
+      final res = await get(Uri.parse('http://ip-api.com/json/')); 
+      final data = jsonDecode(res.body);
+      ipdata = NetworkDetail.fromJson(data);
+     
+    }
+    catch(e){
+    print("\ngetIPDetail: $e");
+  }
+   return  ipdata;
+
 }
 
+}
   
 
 //*** CSV Data ***  

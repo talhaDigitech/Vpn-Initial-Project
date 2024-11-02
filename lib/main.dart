@@ -6,7 +6,6 @@ import 'package:vpn_app/Controller/services/Helper/Pref.dart';
 import 'package:vpn_app/Controller/services/HomeProvder.dart';
 import 'package:vpn_app/Controller/services/LocationProvider.dart';
 import 'package:vpn_app/Views/Constant.dart';
-import 'package:vpn_app/Views/HomeScreen.dart';
 import 'package:vpn_app/Views/OnBoardingScreen.dart';
 import 'package:vpn_app/Views/SplashScreen.dart';
 
@@ -69,7 +68,8 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: newUser ? OnBoardingScreen() : SplachScreen(),
+        // home: newUser ? SplachScreen() : OnBoardingScreen(),
+        home: SplachScreen(),
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
             backgroundColor: primaryColor, 

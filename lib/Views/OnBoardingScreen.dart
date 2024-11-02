@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vpn_app/Models/SplashScreenContent.dart';
 import 'package:vpn_app/Views/Constant.dart';
 import 'package:vpn_app/Views/CustomWidget/MyButton.dart';
+import 'package:vpn_app/Views/HomeScreen.dart';
 import 'package:vpn_app/Views/SplashScreen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -111,11 +112,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ontap: () async {
                           if (currentIndex == contents.length - 1) {
                             var sharedpreference = await SharedPreferences.getInstance();
-                              sharedpreference.setBool('newUser', true);
+                              sharedpreference.setBool('newUser', false);
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SplachScreen()));
+                                    builder: (context) => HomeScreen()));
                           }
                           _pageController?.nextPage(
                               duration: const Duration(milliseconds: 100),
@@ -134,7 +135,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: InkWell(
                 onTap: () async {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SplachScreen()));
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
                 child: Text("Skip",
                 style: btnStyle,

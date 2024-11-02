@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vpn_app/Views/Constant.dart';
 import 'package:vpn_app/Views/HomeScreen.dart';
+import 'package:vpn_app/Views/OnBoardingScreen.dart';
 
 class SplachScreen extends StatefulWidget {
   const SplachScreen({super.key});
@@ -17,7 +18,7 @@ class _SplachScreenState extends State<SplachScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 2), (){
       Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder: (context) => const HomeScreen()));
+      MaterialPageRoute(builder: (context) => const OnBoardingScreen()));
     });
 
   }

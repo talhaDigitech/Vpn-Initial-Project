@@ -47,7 +47,7 @@ static List<String> getStoredCountries() {
 }
 
 
-//   /// for storing vpn servers details  
+
 // static set vpnList(List<AutoGenerate> v) => box.put('vpnList', jsonEncode(v));  
 // static List<AutoGenerate> get vpnList {  
 //     List<AutoGenerate> temp = [];  
